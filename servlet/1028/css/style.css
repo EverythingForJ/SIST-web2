@@ -1,0 +1,6 @@
+ul.global{
+    list-style-type: decimal;
+}
+ul.register{
+    list-style-type: none;
+}
