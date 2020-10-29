@@ -20,15 +20,21 @@ public class RegisterServlet extends HttpServlet{
 		res.setContentType("text/html;charset=utf-8");
 		String username = req.getParameter("username");
 		String userage = req.getParameter("userage");
+		if(userage=="") userage="0"; // 아무 선택 안했을때 값이 널이 아닌 공백으로 들어감. null처리 위해 만듬
 		int age = Integer.parseInt(userage);
 		String gender = req.getParameter("gender");
 		String hobby = "";
 		String [] hobbyArray = req.getParameterValues("hobby");
-		for(int i = 0 ; i < hobbyArray.length ;i++) {
-			hobby += hobbyArray[i] + ",";
-		}  //낚시,등산,게임,영화 감상,
-		hobby = hobby.substring(0, hobby.length() - 1);
+		if(hobbyArray == null || hobbyArray.length == 0) {
+			hobby = "";
+		}else {
+			for(int i = 0 ; i < hobbyArray.length ;i++) {
+				hobby += hobbyArray[i] + ",";
+			}  //낚시,등산,게임,영화 감상,
+			hobby = hobby.substring(0, hobby.length() - 1);
+		}
 		String city = req.getParameter("city");
+		if(city.equals("")) city="";
 		
 		PrintWriter out = res.getWriter();
 		int row = InsertService.insertMember(username, age, gender, hobby, city);
