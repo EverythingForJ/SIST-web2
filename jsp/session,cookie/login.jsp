@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <jsp:useBean id="login" class="com.example.libs.LoginBean" scope="page" />
+<!--useBean--!>
 
 <%
 	request.setCharacterEncoding("utf-8");
